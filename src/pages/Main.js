@@ -1,26 +1,45 @@
 import React, { useEffect, useState } from "react";
 import Dashboard from "../components/Dashboard";
 import Parking from "../components/ParkingLot";
-import createParkingLot from "../utils/createMatrix";
+import createParkingLot from "../utils/distributeSlots";
 import ParkingLot from "../utils/parkingLot";
 
 import classes from './Main.module.css';
 
 const Main = ({slotSize}) => {
-  const [parkingLot,  setParkingLot] = useState([]);
-  
+  const [parkingLot,  setParkingLot] = useState(null);
+  const [distributedSLots, setDistributedSlots] = useState([]);
+  const [freeSlots, setFreeSlots] = useState([]);
+   
   useEffect(() => {
-    const newLot = new ParkingLot(slotSize);
-    setParkingLot(createParkingLot(newLot.slots))
+    setParkingLot(new ParkingLot(slotSize))
   }, [slotSize])
 
-  console.log(parkingLot)
+  useEffect(() => {
+    if(parkingLot){
+      setDistributedSlots(createParkingLot(parkingLot.slots, 4))
+    }
+    console.log(parkingLot)
+  }, [parkingLot])
 
+  const parkCar = () => {
+    parkingLot.park('ab1234bc');
+    setDistributedSlots(createParkingLot(parkingLot.slots, 4));
+  }
+
+  const unparkCar = (i) => {
+    console.log(parkingLot.removeCar(i))
+    if(parkingLot.removeCar(i)){
+      console.log(i)
+      setDistributedSlots(createParkingLot(parkingLot.slots, 4));
+      setFreeSlots(parkingLot.getAvailable());
+    }
+  }
 
   return (
     <div className={classes.container}>
-      <Parking slots={20} />
-      <Dashboard />
+      <Parking slots={distributedSLots} unparkCar={unparkCar}/>
+      <Dashboard freeSlots={freeSlots.length} handleClick={parkCar}/>
     </div>
   );
 };

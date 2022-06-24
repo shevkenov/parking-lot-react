@@ -6,7 +6,7 @@ const Heading = ({freeSlots}) => {
   return (
     <div className={classes.container}>
         <h1 className={classes.heading}>Parking Lot Software Inc.</h1>
-        <p className={classes.infoSection}>Available slots: <span>9</span></p>
+        <p className={classes.infoSection}>Available slots: <span>{freeSlots}</span></p>
     </div>
   )
 }
