@@ -1,0 +1,36 @@
+.siteHeading{
+    font-size: 1.5rem;
+    width: 30%;
+    color: white;
+}
+
+.lendingContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background: green;
+}
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+
+.inputContainer input{
+    width: 100%;
+    padding: 2px 5px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.inputContainer button{
+    width: 100%;
+    height: 40px;
+    background: darkmagenta;
+    color: white;
+}

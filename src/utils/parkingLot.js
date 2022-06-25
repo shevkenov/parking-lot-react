@@ -39,11 +39,3 @@ export default class ParkingLot {
         return !this.getAvailable()
     }
 }
-
-const parking = new ParkingLot(10);
-parking.park('SA1760NV');
-parking.park('PB1960AV');
-console.log(parking.slots);
-parking.removeCar('SA1760NV');
-console.log(parking.slots);
-console.log(parking.isFull())

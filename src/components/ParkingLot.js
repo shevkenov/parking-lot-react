@@ -11,7 +11,7 @@ const ParkingLot = ({slots, unparkCar}) => {
           return (
             <div className={classes.row} key={inx}>
               {
-                rows.map((r,i) => <Slot id={i} handleClick={unparkCar} key={r.plateNumber} isTaken={r.isTaken}>{r.plateNumber}</Slot>)
+                rows.map((r) => <Slot plate={r.plateNumber} handleClick={unparkCar} key={r.plateNumber} isTaken={r.isTaken}>{r.plateNumber}</Slot>)
               }
             </div>
           )
